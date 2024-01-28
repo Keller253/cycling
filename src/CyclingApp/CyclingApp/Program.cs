@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
+using MudBlazor.Services;
+
 namespace CyclingApp
 {
     public class Program
@@ -11,7 +13,14 @@ namespace CyclingApp
             builder.RootComponents.Add<App>("#app");
             builder.RootComponents.Add<HeadOutlet>("head::after");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            // MudBlazor
+            _ = builder.Services.AddMudServices();
+
+            // Blazor.Geolocation
+            _ = builder.Services.AddGeolocationServices();
+
+            // HttpClient
+            _ = builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             await builder.Build().RunAsync();
         }
