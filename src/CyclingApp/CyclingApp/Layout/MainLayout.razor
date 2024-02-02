@@ -6,20 +6,20 @@
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
-    @* <MudAppBar>
+@*<MudLayout>
+    <MudAppBar>
     <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
     My Application
     </MudAppBar>
     <MudDrawer @bind-Open="@_drawerOpen">
     <NavMenu />
     </MudDrawer> *@
-    <MudMainContent>
-        <MudContainer MaxWidth="MaxWidth.Medium">
+    @* <MudMainContent Style="height: 100%;">
+        <MudContainer MaxWidth="MaxWidth.Medium" Style="height: 100%;"> *@
             @Body
-        </MudContainer>
+        @* </MudContainer>
     </MudMainContent>
-</MudLayout>
+</MudLayout>*@
 
 @code {
     bool _drawerOpen = true;

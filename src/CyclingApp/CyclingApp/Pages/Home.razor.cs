@@ -66,17 +66,27 @@ namespace CyclingApp.Pages
             GC.SuppressFinalize(this);
         }
 
-        private void StartOrResume()
+        private void Start()
         {
             if (_isPaused)
             {
-                _stopWatch.Start();
-                _isPaused = false;
+                throw new InvalidOperationException("Cannot start while paused");
             }
-            else
+
+            _stopWatch.Restart();
+
+            _ = _stopWatchWatcher.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
+        }
+
+        private void Resume()
+        {
+            if (!_isPaused)
             {
-                _stopWatch.Restart();
+                throw new InvalidOperationException("Cannot resume when not paused");
             }
+
+            _stopWatch.Start();
+            _isPaused = false;
 
             _ = _stopWatchWatcher.Change(TimeSpan.Zero, TimeSpan.FromSeconds(1));
         }

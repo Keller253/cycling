@@ -1,5 +1,6 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100dvh;
 }
 
 h1:focus {
@@ -34,6 +35,10 @@ a, .btn-link {
 
 .validation-message {
     color: red;
+}
+
+#app {
+    height: 100dvh;
 }
 
 #blazor-error-ui {
