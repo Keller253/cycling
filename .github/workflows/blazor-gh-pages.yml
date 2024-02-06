@@ -24,6 +24,9 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    
+    env:
+      DOTNET_VERSION: '7.0.x'
 
     steps:
       - uses: actions/checkout@v4
@@ -45,10 +48,10 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build CyclingApp --configuration Release
 
       - name: Publish with dotnet
-        run: dotnet publish -c Release -o ./_site
+        run: dotnet publish CyclingApp -c Release -o ./_site
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
