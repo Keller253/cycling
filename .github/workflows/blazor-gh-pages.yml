@@ -49,7 +49,7 @@ jobs:
             ${{ runner.os }}-nuget-
 
       - name: Add build-related packages
-        run: dotnet add package ${{ env.PROJECT_FILE }} PublishSPAforGitHubPages.Build
+        run: dotnet add ${{ env.PROJECT_FILE }} package PublishSPAforGitHubPages.Build
 
       - name: Build with dotnet
         run: dotnet build ${{ env.PROJECT_FILE }} --configuration Release
