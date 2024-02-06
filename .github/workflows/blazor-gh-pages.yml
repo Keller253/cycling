@@ -48,8 +48,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nuget-
 
-      - name: Add PublishSPAforGitHubPages.Build package
-        run: dotnet add package PublishSPAforGitHubPages.Build
+      - name: Add build-related packages
+        run: dotnet add package ${{ env.PROJECT_FILE }} PublishSPAforGitHubPages.Build
 
       - name: Build with dotnet
         run: dotnet build ${{ env.PROJECT_FILE }} --configuration Release
