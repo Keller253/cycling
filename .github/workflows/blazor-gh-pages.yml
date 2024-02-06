@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     
     env:
-      PROJECT_FILE: "src/CyclingApp/CyclingApp/CyclingApp.csproj"
+      PROJECT_FILE: "src/CyclingApp/CyclingApp.csproj"
       DOTNET_VERSION: '8.0.x'
 
     steps:
