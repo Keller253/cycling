@@ -52,10 +52,12 @@ jobs:
         run: dotnet build ${{ env.PROJECT_FILE }} --configuration Release
 
       - name: Publish with dotnet
-        run: dotnet publish ${{ env.PROJECT_FILE }} -c Release -o ./_site
+        run: dotnet publish ${{ env.PROJECT_FILE }} -c Release -o ./app
         
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./app/wwwroot
 
   # Deployment job
   deploy:
