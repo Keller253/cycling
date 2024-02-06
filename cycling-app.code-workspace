@@ -4,5 +4,15 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"redhat.telemetry.enabled": false
+	},
+	"extensions": {
+		"recommendations": [
+			"github.vscode-github-actions",
+			"bierner.github-markdown-preview",
+			"davidanson.vscode-markdownlint",
+			"redhat.vscode-yaml"
+		]
+	}
 }
