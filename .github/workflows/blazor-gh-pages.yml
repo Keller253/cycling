@@ -27,7 +27,7 @@ jobs:
     
     env:
       PROJECT_FILE: "src/CyclingApp/CyclingApp/CyclingApp.csproj"
-      DOTNET_VERSION: '7.0.x'
+      DOTNET_VERSION: '8.0.x'
 
     steps:
       - uses: actions/checkout@v4
