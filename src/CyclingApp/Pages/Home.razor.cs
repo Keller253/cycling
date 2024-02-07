@@ -3,8 +3,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-using Thinktecture.Blazor.ScreenWakeLock;
-
 namespace CyclingApp.Pages
 {
     public partial class Home : IAsyncDisposable
@@ -21,8 +19,8 @@ namespace CyclingApp.Pages
         [Inject]
         protected IGeolocationService GeolocationService { get; set; } = default!;
 
-        [Inject]
-        protected IScreenWakeLockService ScreenWakeLockService { get; set; } = default!;
+        //[Inject]
+        //protected IScreenWakeLockService ScreenWakeLockService { get; set; } = default!;
 
         public Home()
         {
@@ -78,7 +76,7 @@ namespace CyclingApp.Pages
                 throw new InvalidOperationException("Cannot start while paused");
             }
 
-            _ = ScreenWakeLockService.RequestWakeLockAsync();
+            //_ = ScreenWakeLockService.RequestWakeLockAsync();
 
             _stopWatch.Restart();
 
@@ -111,7 +109,7 @@ namespace CyclingApp.Pages
             _ = _stopWatchWatcher.Change(Timeout.Infinite, Timeout.Infinite);
             _isPaused = false;
 
-            _ = ScreenWakeLockService.RequestWakeLockAsync();
+            //_ = ScreenWakeLockService.RequestWakeLockAsync();
         }
 
         private void WatchStopWatch(object? state)

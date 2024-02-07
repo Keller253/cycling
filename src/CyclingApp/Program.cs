@@ -20,7 +20,7 @@ namespace CyclingApp
             _ = builder.Services.AddGeolocationServices();
 
             // Blazor.ScreenWakeLock
-            _ = builder.Services.AddScreenWakeLockServices();
+            //_ = builder.Services.AddScreenWakeLockServices();
 
             // HttpClient
             _ = builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
