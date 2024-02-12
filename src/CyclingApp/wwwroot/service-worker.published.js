@@ -8,8 +8,8 @@ self.addEventListener('fetch', event => event.respondWith(onFetch(event)));
 
 const cacheNamePrefix = 'offline-cache-';
 const cacheName = `${cacheNamePrefix}${self.assetsManifest.version}`;
-const offlineAssetsInclude = [ /\.dll$/, /\.pdb$/, /\.wasm/, /\.html/, /\.js$/, /\.json$/, /\.css$/, /\.woff$/, /\.png$/, /\.jpe?g$/, /\.gif$/, /\.ico$/, /\.blat$/, /\.dat$/ ];
-const offlineAssetsExclude = [ /^service-worker\.js$/ ];
+const offlineAssetsInclude = [/\.dll$/, /\.pdb$/, /\.wasm/, /\.html/, /\.js$/, /\.json$/, /\.css$/, /\.woff$/, /\.png$/, /\.jpe?g$/, /\.gif$/, /\.ico$/, /\.blat$/, /\.dat$/];
+const offlineAssetsExclude = [/^service-worker\.js$/];
 
 // Replace with your base path if you are hosting on a subfolder. Ensure there is a trailing '/'.
 const base = "/";
@@ -51,5 +51,5 @@ async function onFetch(event) {
         cachedResponse = await cache.match(request);
     }
 
-    return cachedResponse || fetch(event.request);
+    return /*cachedResponse ||*/ fetch(event.request);
 }
