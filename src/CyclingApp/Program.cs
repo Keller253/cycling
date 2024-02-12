@@ -1,7 +1,10 @@
+using CyclingApp.Services;
+
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
 using MudBlazor.Services;
+
 
 namespace CyclingApp
 {
@@ -20,7 +23,10 @@ namespace CyclingApp
             _ = builder.Services.AddGeolocationServices();
 
             // Blazor.ScreenWakeLock
-            //_ = builder.Services.AddScreenWakeLockServices();
+            _ = builder.Services.AddScreenWakeLockServices();
+
+            // Services
+            _ = builder.Services.AddSingleton<IActivityService, ActivityService>();
 
             // HttpClient
             _ = builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
