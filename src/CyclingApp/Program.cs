@@ -1,37 +1,33 @@
 using CyclingApp.Services;
-
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-
 using MudBlazor.Services;
 
+namespace CyclingApp;
 
-namespace CyclingApp
+public class Program
 {
-    public class Program
+    public static async Task Main(string[] args)
     {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("#app");
-            builder.RootComponents.Add<HeadOutlet>("head::after");
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.RootComponents.Add<App>("#app");
+        builder.RootComponents.Add<HeadOutlet>("head::after");
 
-            // MudBlazor
-            _ = builder.Services.AddMudServices();
+        // MudBlazor
+        _ = builder.Services.AddMudServices();
 
-            // Blazor.Geolocation
-            _ = builder.Services.AddGeolocationServices();
+        // Blazor.Geolocation
+        _ = builder.Services.AddGeolocationServices();
 
-            // Blazor.ScreenWakeLock
-            _ = builder.Services.AddScreenWakeLockServices();
+        // Blazor.ScreenWakeLock
+        _ = builder.Services.AddScreenWakeLockServices();
 
-            // Services
-            _ = builder.Services.AddSingleton<IActivityService, ActivityService>();
+        // Services
+        _ = builder.Services.AddSingleton<IActivityService, ActivityService>();
 
-            // HttpClient
-            _ = builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+        // HttpClient
+        _ = builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            await builder.Build().RunAsync();
-        }
+        await builder.Build().RunAsync();
     }
 }

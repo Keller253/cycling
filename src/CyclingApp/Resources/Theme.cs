@@ -1,43 +1,48 @@
 ﻿using MudBlazor;
 
-namespace CyclingApp.Resources
+namespace CyclingApp.Resources;
+
+/// <summary>
+/// Contains themes of the app.
+/// </summary>
+public static class Themes
 {
-    public static class Themes
+    /// <summary>
+    /// Default theme.
+    /// </summary>
+    public static MudTheme Default => new()
     {
-        public static MudTheme Default => new()
+        PaletteDark = new PaletteDark
         {
-            PaletteDark = new PaletteDark
+            // Primary
+            Primary = "#28EB67",
+            PrimaryContrastText = "#000000",
+
+            // Dark
+            Dark = "#4B4D52",
+            DarkLighten = "#393A40",
+            DarkDarken = "#191A1B",
+            DarkContrastText = "#FFFFFF",
+
+            // Surface
+            Surface = "#191A1B",
+
+            // Background
+            Background = "#000000",
+            //BackgroundGrey = "",
+
+            // Text
+            TextPrimary = "#FFFFFF",
+            //TextSecondary = ""
+            //TextDisabled = "",
+        },
+        Typography = new Typography
+        {
+            Default = new()
             {
-                // Primary
-                Primary = "#28EB67",
-                PrimaryContrastText = "#000000",
-
-                // Dark
-                Dark = "#4B4D52",
-                DarkLighten = "#393A40",
-                DarkDarken = "#191A1B",
-                DarkContrastText = "#FFFFFF",
-
-                // Surface
-                Surface = "#191A1B",
-
-                // Background
-                Background = "#000000",
-                //BackgroundGrey = "",
-
-                // Text
-                TextPrimary = "#FFFFFF",
-                //TextSecondary = ""
-                //TextDisabled = "",
-            },
-            Typography = new Typography
-            {
-                Default = new()
-                {
-                    FontFamily = ["sui-generis", "sans-serif"],
-                    FontWeight = 500
-                }
+                FontFamily = ["sui-generis", "sans-serif"],
+                FontWeight = 500
             }
-        };
-    }
+        }
+    };
 }

@@ -1,65 +1,67 @@
 ﻿@page "/tracker"
 
-<PageTitle>Activity</PageTitle>
+<PageTitle>Track new activity</PageTitle>
 
-<MudElement Style="height: 100%; max-width: 100vh;">
-    <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
-        <MudGrid Spacing="2">
-            <MudItem xs="6">
-                <MudPaper Class="pa-4">
-                    <MudText>DISTANCE</MudText>
-                    <MudText Typo="Typo.h4">@_route.Distance</MudText>
-                    <MudText>km</MudText>
-                </MudPaper>
-            </MudItem>
-            <MudItem xs="6">
-                <MudPaper Class="pa-4">
-                    <MudText>AVG SPEED</MudText>
-                    <MudText Typo="Typo.h4">@_route.CalculateAvgSpeed(_stopWatch.Elapsed)</MudText>
-                    <MudText>km/h</MudText>
-                </MudPaper>
-            </MudItem>
-        </MudGrid>
-        <div Style="height: 100%;" />
-        <MudStack Row="true" Spacing="4">
-            <MudPaper Class="pa-4" Style="width: 100%;">
-                <MudText>TIME</MudText>
-                <MudText Typo="Typo.h4">@_currentTime.ToString("hh\\:mm\\:ss")</MudText>
-                </MudPaper>
-                @if (_stopWatch.IsRunning || _isPaused)
-            {
-                <MudButton Size="Size.Large" Variant="Variant.Filled" Class="pa-10" Style="aspect-ratio: 1 / 1;" Color="Color.Dark" OnClick="@(_isPaused ? Stop : Pause)">
-                    @if (_isPaused)
-                    {
-                        <MudIcon Icon="@Icons.Material.Filled.Stop" Size="@Size.Large" Title="Stop" />
-                    }
-                    else
-                    {
-                        <MudIcon Icon="@Icons.Material.Filled.Pause" Size="@Size.Large" Title="Pause" />
-                    }
-                </MudButton>
-            }
-        </MudStack>
-        @if (!_stopWatch.IsRunning)
-        {
+<div Class="d-flex justify-center" Style="height: 100%; background: var(--mud-palette-surface);">
+    <div Style="max-width: 60vh; width: 100vw; background: var(--mud-palette-background);">
+        <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
+            <MudGrid Spacing="2">
+                <MudItem xs="6">
+                    <MudPaper Class="pa-4">
+                        <MudText>DISTANCE</MudText>
+                        <MudText Typo="Typo.h4">@((_route.Distance / 1000).ToString("N2"))</MudText>
+                        <MudText>km</MudText>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="6">
+                    <MudPaper Class="pa-4">
+                        <MudText>AVG SPEED</MudText>
+                        <MudText Typo="Typo.h4">@_route.CalculateAvgSpeed(_stopWatch.Elapsed).ToString("N2")</MudText>
+                        <MudText>km/h</MudText>
+                    </MudPaper>
+                </MudItem>
+            </MudGrid>
+            <div Style="height: 100%;" />
             <MudStack Row="true" Spacing="4">
-                @if (!_isPaused)
+                <MudPaper Class="pa-4" Style="width: 100%;">
+                    <MudText>TIME</MudText>
+                    <MudText Typo="Typo.h4">@_currentTime.ToString("hh\\:mm\\:ss")</MudText>
+                    </MudPaper>
+                    @if (_stopWatch.IsRunning || _isPaused)
                 {
-                    <MudButton Size="Size.Large" Variant="Variant.Filled" Class="pa-10" Style="aspect-ratio: 1 / 1;" Color="Color.Dark" OnClick="@NavigateToHome">
-                        <MudIcon Icon="@Icons.Material.Filled.ChevronLeft" Size="@Size.Large" Title="Back" />
+                    <MudButton Size="Size.Large" Variant="Variant.Filled" Class="pa-10" Style="aspect-ratio: 1 / 1;" Color="Color.Dark" OnClick="@(_isPaused ? Stop : Pause)">
+                        @if (_isPaused)
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.Stop" Size="@Size.Large" Title="Stop" />
+                        }
+                        else
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.Pause" Size="@Size.Large" Title="Pause" />
+                        }
                     </MudButton>
                 }
-                <MudButton Color="Color.Primary" Size="Size.Large" Class="pa-8" FullWidth="true" Variant="Variant.Filled" OnClick="@(_isPaused ? Resume : Start)">
-                    @if (_isPaused)
-                    {
-                        <MudIcon Icon="@Icons.Material.Filled.PlayArrow" Size="@Size.Large" Title="Resume" />
-                    }
-                    else
-                    {
-                        <MudIcon Icon="@Icons.Material.Filled.PlayArrow" Size="@Size.Large" Title="Start" />
-                    }
-                </MudButton>
             </MudStack>
-        }
-    </MudStack>
-</MudElement>
+            @if (!_stopWatch.IsRunning)
+            {
+                <MudStack Row="true" Spacing="4">
+                    @if (!_isPaused)
+                    {
+                        <MudButton Size="Size.Large" Variant="Variant.Filled" Class="pa-10" Style="aspect-ratio: 1 / 1;" Color="Color.Dark" OnClick="@NavigateToHome">
+                            <MudIcon Icon="@Icons.Material.Filled.ChevronLeft" Size="@Size.Large" Title="Back" />
+                        </MudButton>
+                    }
+                    <MudButton Color="Color.Primary" Size="Size.Large" Class="pa-8" FullWidth="true" Variant="Variant.Filled" OnClick="@(_isPaused ? Resume : Start)">
+                        @if (_isPaused)
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.PlayArrow" Size="@Size.Large" Title="Resume" />
+                        }
+                        else
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.PlayArrow" Size="@Size.Large" Title="Start" />
+                        }
+                    </MudButton>
+                </MudStack>
+            }
+        </MudStack>
+    </div>
+</div>

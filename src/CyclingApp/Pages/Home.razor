@@ -2,14 +2,40 @@
 
 <PageTitle>Home</PageTitle>
 
-<MudElement Style="height: 100%; max-width: 100vh;">
-    <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
-        <div Style="height: 100%;" />
-        <MudButton Variant="Variant.Filled" FullWidth="true" Class="pa-8" Size="@Size.Large" Color="Color.Primary" OnClick="@NavigateToTracker">
-            <MudStack Row="true" Spacing="4">
-                <MudText Typo="Typo.h4">New activity</MudText>
-                <MudIcon Icon="@Icons.Material.Filled.KeyboardDoubleArrowRight" Size="@Size.Large" Title="Arrow right" />
-            </MudStack>
-        </MudButton>
-    </MudStack>
-</MudElement>
+<div Class="d-flex justify-center" Style="height: 100%; background: var(--mud-palette-surface);">
+    <div Style="max-width: 60vh; width: 100vw; background: var(--mud-palette-background);">
+        <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
+            <div Class="gap-0">
+                <MudText Color="Color.Primary">GOOD MORNING</MudText>
+                <MudText Typo="Typo.h3">Enjoy Your Biking</MudText>
+            </div>
+            <div Style="height: 100%;" />
+            @if (ActivityService.Activities.Any())
+            {
+                <MudText Typo="Typo.h4">Recent</MudText>
+                <MudStack Spacing="4" Class="overflow-auto">
+                    @foreach (var activity in ActivityService.Activities)
+                    {
+                        <div @onclick="() => NavigateToActivity(activity.Id)" style="cursor: pointer;">
+                            <MudPaper Class="pa-4">
+                                <MudStack Spacing="2">
+                                    <MudText Typo="Typo.h4">@activity.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
+                                    <MudStack Row="true" Class="d-flex justify-space-between flex-grow-1">
+                                        <MudText>@($"{(activity.Route.Distance / 1000):N2} km")</MudText>
+                                        <MudText>@activity.Duration.ToString("hh\\:mm\\:ss")</MudText>
+                                    </MudStack>
+                                </MudStack>
+                            </MudPaper>
+                        </div>
+                    }
+                </MudStack>
+            }
+            <MudButton Variant="Variant.Filled" FullWidth="true" Class="pa-8" Size="@Size.Large" Color="Color.Primary" OnClick="@NavigateToTracker">
+                <MudStack Row="true" Spacing="4">
+                    <MudText Typo="Typo.h4">New activity</MudText>
+                    <MudIcon Icon="@Icons.Material.Filled.KeyboardDoubleArrowRight" Size="@Size.Large" Title="Arrow right" />
+                </MudStack>
+            </MudButton>
+        </MudStack>
+    </div>
+</div>
