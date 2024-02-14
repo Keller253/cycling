@@ -51,6 +51,6 @@ public partial class Activity
 
     private void NavigateToHome()
     {
-        NavigationManager.NavigateTo(Home.Route);
+        NavigationManager.NavigateTo($".{Home.Route}");
     }
 }

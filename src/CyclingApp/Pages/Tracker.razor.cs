@@ -172,7 +172,7 @@ public partial class Tracker : IAsyncDisposable
         {
             var route = new ReadOnlyRoute(_route.Waypoints);
             var activity = await ActivityService.CreateActivityAsync(_creationTime, _stopWatch.Elapsed, route);
-            NavigationManager.NavigateTo($"{Activity.Route}/{activity.Id}");
+            NavigationManager.NavigateTo($".{Activity.Route}/{activity.Id}");
         });
     }
 

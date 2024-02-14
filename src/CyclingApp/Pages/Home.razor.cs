@@ -38,11 +38,11 @@ public partial class Home
 
     private void NavigateToTracker()
     {
-        NavigationManager.NavigateTo(Tracker.Route);
+        NavigationManager.NavigateTo($".{Tracker.Route}");
     }
 
     private void NavigateToActivity(Guid id)
     {
-        NavigationManager.NavigateTo($"{Activity.Route}/{id}");
+        NavigationManager.NavigateTo($".{Activity.Route}/{id}");
     }
 }
