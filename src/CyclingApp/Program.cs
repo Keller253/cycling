@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using CyclingApp.Services;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -16,14 +17,17 @@ public class Program
         // MudBlazor
         _ = builder.Services.AddMudServices();
 
-        // Blazor.Geolocation
+        // Geolocation Api
         _ = builder.Services.AddGeolocationServices();
 
-        // Blazor.ScreenWakeLock
+        // Screen Wake Lock Api
         _ = builder.Services.AddScreenWakeLockServices();
 
+        // Local Storage Api
+        _ = builder.Services.AddBlazoredLocalStorage();
+
         // Services
-        _ = builder.Services.AddSingleton<IActivityService, ActivityService>();
+        _ = builder.Services.AddTransient<IActivityService, ActivityService>();
 
         // HttpClient
         _ = builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });

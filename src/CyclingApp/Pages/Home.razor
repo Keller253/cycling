@@ -10,25 +10,27 @@
                 <MudText Typo="Typo.h3">Enjoy Your Biking</MudText>
             </div>
             <div Style="height: 100%;" />
-            @if (ActivityService.Activities.Any())
+            @if (_activities.Any())
             {
-                <MudText Typo="Typo.h4">Recent</MudText>
-                <MudStack Spacing="4" Class="overflow-auto">
-                    @foreach (var activity in ActivityService.Activities)
-                    {
-                        <div @onclick="() => NavigateToActivity(activity.Id)" style="cursor: pointer;">
-                            <MudPaper Class="pa-4">
-                                <MudStack Spacing="2">
-                                    <MudText Typo="Typo.h4">@activity.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
-                                    <MudStack Row="true" Class="d-flex justify-space-between flex-grow-1">
-                                        <MudText>@($"{(activity.Route.Distance / 1000):N2} km")</MudText>
-                                        <MudText>@activity.Duration.ToString("hh\\:mm\\:ss")</MudText>
+                <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
+                    <MudText Typo="Typo.h4">Recent</MudText>
+                    <MudStack Spacing="4" Class="overflow-auto">
+                        @foreach (var activity in _activities)
+                        {
+                            <div @onclick="() => NavigateToActivity(activity.Id)" style="cursor: pointer;">
+                                <MudPaper Class="pa-4">
+                                    <MudStack Spacing="2">
+                                        <MudText Typo="Typo.h4">@activity.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
+                                        <MudStack Row="true" Class="d-flex justify-space-between flex-grow-1">
+                                            <MudText>@($"{(activity.Route.Distance / 1000):N2} km")</MudText>
+                                            <MudText>@activity.Duration.ToString("hh\\:mm\\:ss")</MudText>
+                                        </MudStack>
                                     </MudStack>
-                                </MudStack>
-                            </MudPaper>
-                        </div>
-                    }
-                </MudStack>
+                                </MudPaper>
+                            </div>
+                        }
+                    </MudStack>
+                 </MudStack>
             }
             <MudButton Variant="Variant.Filled" FullWidth="true" Class="pa-8" Size="@Size.Large" Color="Color.Primary" OnClick="@NavigateToTracker">
                 <MudStack Row="true" Spacing="4">

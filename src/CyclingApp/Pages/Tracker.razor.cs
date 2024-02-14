@@ -168,9 +168,12 @@ public partial class Tracker : IAsyncDisposable
 
         //_ = ScreenWakeLockService.RequestWakeLockAsync();
 
-        var route = new ReadOnlyRoute(_route.Waypoints);
-        var activity = ActivityService.CreateActivity(_creationTime, _stopWatch.Elapsed, route);
-        NavigationManager.NavigateTo($"{Activity.Route}/{activity.Id}");
+        _ = Task.Run(async () =>
+        {
+            var route = new ReadOnlyRoute(_route.Waypoints);
+            var activity = await ActivityService.CreateActivityAsync(_creationTime, _stopWatch.Elapsed, route);
+            NavigationManager.NavigateTo($"{Activity.Route}/{activity.Id}");
+        });
     }
 
     private void WatchStopWatch(object? state)

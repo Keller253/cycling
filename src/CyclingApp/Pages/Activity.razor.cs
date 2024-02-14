@@ -37,9 +37,16 @@ public partial class Activity
     protected NavigationManager NavigationManager { get; set; } = default!;
 
     /// <inheritdoc/>
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        _activity = ActivityService.Activities.FirstOrDefault(x => x.Id == Id);
+        try
+        {
+            _activity = await ActivityService.GetActivityAsync(Id);
+        }
+        catch (Exception)
+        {
+            NavigateToHome();
+        }
     }
 
     private void NavigateToHome()

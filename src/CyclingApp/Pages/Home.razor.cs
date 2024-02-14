@@ -13,6 +13,8 @@ public partial class Home
     /// </summary>
     public const string Route = "/";
 
+    private readonly List<Models.Activity> _activities = [];
+
     /// <summary>
     /// Service to get an activity.
     /// </summary>
@@ -24,6 +26,15 @@ public partial class Home
     /// </summary>
     [Inject]
     protected NavigationManager NavigationManager { get; set; } = default!;
+
+    /// <inheritdoc/>
+    protected override async Task OnInitializedAsync()
+    {
+        await foreach (var activity in ActivityService.GetActivitiesAsync())
+        {
+            _activities.Add(activity);
+        }
+    }
 
     private void NavigateToTracker()
     {
