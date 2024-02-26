@@ -6,9 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+    <!-- Required to allow the code generator in the Roslyn compiler to use pointers for JS interop. -->
+    <!--<AllowUnsafeBlocks>true</AllowUnsafeBlocks>-->
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazor.Extensions.Canvas" Version="1.1.1" />
     <PackageReference Include="Blazor.Geolocation" Version="8.0.0" />
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
     <PackageReference Include="Geolocation" Version="1.2.1" />

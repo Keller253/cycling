@@ -2,42 +2,42 @@
 
 <PageTitle>Home</PageTitle>
 
-<div Class="d-flex justify-center" Style="height: 100%; background: var(--mud-palette-surface);">
-    <div Style="max-width: 60vh; width: 100vw; background: var(--mud-palette-background);">
-        <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
-            <div Class="gap-0">
-                <MudText Color="Color.Primary">GOOD MORNING</MudText>
-                <MudText Typo="Typo.h3">Enjoy Your Biking</MudText>
-            </div>
-            <div Style="height: 100%;" />
-            @if (_activities.Any())
-            {
-                <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
-                    <MudText Typo="Typo.h4">Recent</MudText>
-                    <MudStack Spacing="4" Class="overflow-auto">
-                        @foreach (var activity in _activities)
-                        {
-                            <div @onclick="() => NavigateToActivity(activity.Id)" style="cursor: pointer;">
-                                <MudPaper Class="pa-4">
-                                    <MudStack Spacing="2">
-                                        <MudText Typo="Typo.h4">@activity.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
-                                        <MudStack Row="true" Class="d-flex justify-space-between flex-grow-1">
-                                            <MudText>@($"{(activity.Route.Distance / 1000):N2} km")</MudText>
-                                            <MudText>@activity.Duration.ToString("hh\\:mm\\:ss")</MudText>
-                                        </MudStack>
-                                    </MudStack>
-                                </MudPaper>
-                            </div>
-                        }
-                    </MudStack>
-                 </MudStack>
-            }
-            <MudButton Variant="Variant.Filled" FullWidth="true" Class="pa-8" Size="@Size.Large" Color="Color.Primary" OnClick="@NavigateToTracker">
-                <MudStack Row="true" Spacing="4">
-                    <MudText Typo="Typo.h4">New activity</MudText>
-                    <MudIcon Icon="@Icons.Material.Filled.KeyboardDoubleArrowRight" Size="@Size.Large" Title="Arrow right" />
-                </MudStack>
-            </MudButton>
-        </MudStack>
+<MudStack Class="d-flex flex-column pa-4 flex-1 overflow-auto" Spacing="4">
+    <div class="flex-none gap-0">
+        <MudText Color="Color.Primary">GOOD MORNING</MudText>
+        <MudText Typo="Typo.h3">Enjoy Your Biking</MudText>
     </div>
-</div>
+    <!-- Logo -->
+    <div class="flex-1" style="display: flex; justify-content: center; align-items: center;">                    
+        <svg width="176" height="152" viewBox="0 0 176 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M133.847 150.474C117.194 146.798 104.311 131.361 104.271 115.034C104.228 97.3045 114.487 84.9457 124.813 90.2859C132.075 94.0409 144.412 114.81 141.043 117.606C139.317 119.038 137.698 117.83 136.065 113.891C127.765 93.8754 118.416 88.5775 112.407 100.485C98.9619 127.131 128.434 156.428 154.804 142.628C184.028 127.335 171.377 85.1446 137.525 85.0024C129.26 84.9677 127.211 82.5147 127.211 72.6576C127.211 66.5768 127.136 66.1218 126.105 65.9208C125.497 65.8023 122.635 65.4164 119.745 65.0632C104.211 63.1645 103.064 60.6689 105.042 33.0658C106.041 19.1349 106.199 19.899 101.857 17.6988C80.0475 6.64708 50.9404 18.4812 49.6278 38.9337L49.3676 42.9887L51.66 45.1694C54.6091 47.9748 59.4183 49.4743 73.8468 52.087C92.6095 55.4846 95.5285 56.8971 96.7812 63.1854L97.4335 66.46L104.857 66.8001C125.825 67.7608 125.774 70.0477 104.174 97.4797C79.3369 129.024 72.5077 129.982 83.2545 100.417C87.7871 87.9468 91.0871 77.6186 91.7905 73.7006L92.1783 71.5403L86.4688 71.9037C67.9484 73.0823 52.6791 82.359 59.2663 88.4302C68.4718 96.9146 75.3426 112.046 72.4923 117.558C70.8481 120.738 69.3374 120.979 58.6356 119.775C32.9044 116.881 31.4455 113.893 45.3782 92.6289C49.6288 86.1416 49.4917 86.9376 46.6118 85.4652C26.0306 74.9429 -0.0769843 97.9745 5.51071 121.724C11.6303 147.734 44.1997 153.316 62.0873 131.42C65.3236 127.458 66.9014 126.69 68.3109 128.388C71.4285 132.145 55.2775 146.061 44.5381 148.872C29.3001 152.861 10.9768 145.094 4.05825 131.713C-11.2566 102.095 19.6382 67.2893 48.9419 81.1477L52.4684 82.8155L54.9074 80.0273C62.2839 71.5949 69.2992 68.5893 84.8753 67.1881C92.9267 66.4637 92.8055 66.5215 92.0453 63.7681C91.5652 62.0292 91.0393 61.4746 89.026 60.5841C86.6304 59.5244 84.5841 59.0699 67.0047 55.6929C49.6646 52.3618 44.7893 48.8306 44.8411 39.6397C44.9488 20.5784 67.2741 5.2236 89.3715 9.01286C93.7649 9.76624 96.6879 10.599 104.872 13.429C105.603 13.6816 105.812 13.1474 106.062 10.3982C107.494 -5.3965 129.205 -2.52968 136.961 14.4784C143.919 29.7346 122.008 42.91 112.85 28.9772C110.583 25.5289 110.513 25.597 109.992 31.7595C108.529 49.0489 109.554 58.5239 112.962 59.211C114.91 59.6038 126.738 61.2065 127.688 61.2065C128.082 61.2065 128.979 59.9788 129.682 58.4783C133.756 49.7813 143.917 47.3227 148.352 53.9611C152.243 59.7865 146.946 65.4496 136.967 66.1328L132.188 66.46V72.3864C132.188 80.3216 131.945 80.1124 141.714 80.596C158.353 81.4198 170.672 91.9438 175.055 109.078C181.017 132.391 157.762 155.752 133.847 150.474ZM68.3169 114.104C68.3169 108.25 56.9921 89.9623 53.3665 89.9623C52.3372 89.9623 41.2201 108.417 41.2201 110.126C41.2201 112.455 51.7835 114.783 67.3491 115.885C68.0915 115.937 68.3169 115.522 68.3169 114.104ZM87.0368 110.285C93.1747 103.795 105.882 87.8284 112.782 77.9377L115.962 73.3784L114.598 72.8598C112.952 72.2341 103.7 71.1604 99.9536 71.1604H97.261L96.29 75.7226C95.0592 81.5059 91.8631 91.3828 87.3406 103.379C82.9111 115.128 82.9333 114.624 87.0368 110.285ZM142.28 60.0701C146.2 58.3798 145.21 55.1236 140.776 55.1236C138.128 55.1236 132.922 59.7094 133.855 61.2193C134.265 61.8836 139.837 61.1238 142.28 60.0701ZM124.745 30.2416C129.46 28.9318 133.01 24.5866 133.015 20.1192C133.025 10.1181 115.521 -0.433975 111.815 7.33898C110.777 9.51467 110.507 18.3191 111.459 18.9079C111.768 19.0989 113.235 21.0421 114.717 23.2262C118.023 28.0946 120.458 30.4438 122.51 30.745C122.663 30.7674 123.668 30.5409 124.745 30.2416Z" fill="#28EB67" />
+        </svg>
+    </div>
+    <!-- Recent activities -->
+    @if (_activities.Any())
+    {
+        <MudText Class="flex-none" Typo="Typo.h4">Recent</MudText>
+        <MudStack Spacing="4" Class="overflow-auto flex-1">
+            @foreach (var activity in _activities)
+            {
+                <div @onclick="() => NavigateToActivity(activity.Id)" style="cursor: pointer;">
+                    <MudPaper Class="pa-4">
+                        <MudStack Spacing="2">
+                            <MudText Typo="Typo.h4">@activity.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
+                            <MudStack Row="true" Class="d-flex justify-space-between flex-grow-1">
+                                <MudText>@($"{(activity.Route.Distance / 1000):N2} km")</MudText>
+                                <MudText>@activity.Duration.ToString("hh\\:mm\\:ss")</MudText>
+                            </MudStack>
+                        </MudStack>
+                    </MudPaper>
+                </div>
+            }
+        </MudStack>
+    }
+    <MudButton Variant="Variant.Filled" FullWidth="true" Class="flex-none pa-8" Size="@Size.Large" Color="Color.Primary" OnClick="@NavigateToTracker">
+        <MudStack Row="true" Spacing="4">
+            <MudText Typo="Typo.h4">New activity</MudText>
+            <MudIcon Icon="@Icons.Material.Filled.KeyboardDoubleArrowRight" Size="@Size.Large" Title="Arrow right" />
+        </MudStack>
+    </MudButton>
+</MudStack>

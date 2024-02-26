@@ -1,0 +1,42 @@
+﻿<MudPaper Class=@($"pa-4 {Class}") Style=@($"width: 100%;{Style}")>
+    <MudText>@Title.ToUpperInvariant()</MudText>
+    <MudText Typo="Typo.h4">@Value</MudText>
+    @if(Unit is not null)
+    {
+        <MudText Align="Align.Right">@Unit</MudText>
+    }
+</MudPaper>
+
+    @code {
+
+    /// <summary>
+    /// HTML style attribute.
+    /// </summary>
+    [Parameter]
+    public string Style { get; set; } = string.Empty;
+
+    /// <summary>
+    /// HTML class attribute.
+    /// </summary>
+    [Parameter]
+    public string Class { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Title of the data.
+    /// </summary>
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Value of the data.
+    /// </summary>
+    [Parameter]
+    public string Value { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Optional unit of the data.
+    /// </summary>
+    [Parameter]
+    public string? Unit { get; set; } = null;
+
+}

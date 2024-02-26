@@ -38,7 +38,8 @@ public abstract class RouteBase
     /// <returns>The average speed in kilometers per hour.</returns>
     public double CalculateAvgSpeed(TimeSpan duration)
     {
-        return Distance / 1000 / duration.TotalHours;
+        var result = Distance / 1000 / duration.TotalHours;
+        return double.IsNaN(result) ? 0 : result;
     }
 
     /// <summary>

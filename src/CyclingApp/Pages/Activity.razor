@@ -2,35 +2,20 @@
 
 <PageTitle>Activity @_activity?.CreationTime.ToString("ddd, dd.MM.yy")</PageTitle>
 
-<div Class="d-flex justify-center" Style="height: 100%; background: var(--mud-palette-surface);">
-    <div Style="max-width: 60vh; width: 100vw; background: var(--mud-palette-background);">
-        <MudStack Style="height: 100%;" Class="pa-4" Spacing="4">
-            <MudStack Row="true" Class="d-flex justify-space-between flex-grow-1 align-center">
-                <MudIconButton Size="@Size.Large" OnClick="@NavigateToHome" Icon="@Icons.Material.Filled.ArrowBackIosNew" aria-label="Navigate home" />
-                <MudText Typo="Typo.h5">@_activity?.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
-                <MudIconButton Size="@Size.Large" OnClick="@NavigateToHome" Icon="@Icons.Material.Filled.Edit" aria-label="Edit" />
-            </MudStack>
-            <MudGrid Spacing="2">
-                <MudItem xs="6">
-                    <MudPaper Class="pa-4">
-                        <MudText>DISTANCE</MudText>
-                            <MudText Typo="Typo.h4">@((_activity?.Route.Distance / 1000)?.ToString("N2"))</MudText>
-                        <MudText>km</MudText>
-                    </MudPaper>
-                </MudItem>
-                <MudItem xs="6">
-                    <MudPaper Class="pa-4">
-                        <MudText>AVG SPEED</MudText>
-                            <MudText Typo="Typo.h4">@_activity?.AvgSpeed.ToString("N2")</MudText>
-                        <MudText>km/h</MudText>
-                    </MudPaper>
-                </MudItem>
-            </MudGrid>
-            <div Style="height: 100%;" />
-            <MudPaper Class="pa-4" Style="width: 100%;">
-                <MudText>TIME</MudText>
-                <MudText Typo="Typo.h4">@_activity?.Duration.ToString("hh\\:mm\\:ss")</MudText>
-            </MudPaper>
-        </MudStack>
-    </div>
-</div>
+<MudStack Class="d-flex flex-column pa-4 flex-1 overflow-auto" Spacing="4">
+    <MudStack Row="true" Class="d-flex justify-space-between align-center">
+        <MudIconButton Size="@Size.Large" OnClick="@NavigateToHome" Icon="@Icons.Material.Filled.ArrowBackIosNew" aria-label="Navigate home" />
+        <MudText Typo="Typo.h5">@_activity?.CreationTime.ToString("ddd, dd.MM.yy")</MudText>
+        <MudIconButton Size="@Size.Large" OnClick="@NavigateToHome" Icon="@Icons.Material.Filled.Edit" aria-label="Edit" />
+    </MudStack>
+    <MudGrid Spacing="2">
+        <MudItem xs="6">
+            <CyclingApp.Components.DataCard Title="Distance" Value=@((_activity?.Route.Distance / 1000)?.ToString("N2")) Unit="km" />
+        </MudItem>
+        <MudItem xs="6">
+            <CyclingApp.Components.DataCard Title="Avg speed" Value=@_activity?.AvgSpeed.ToString("N2") Unit="km/h" />
+        </MudItem>
+    </MudGrid>
+    <CyclingApp.Components.RouteMap Class="flex-grow-1" Route=@_activity?.Route />
+    <CyclingApp.Components.DataCard Title="Time" Value=@_activity?.Duration.ToString("hh\\:mm\\:ss") />
+</MudStack>

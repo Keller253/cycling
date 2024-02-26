@@ -89,7 +89,7 @@ public partial class Tracker : IAsyncDisposable
     {
         if (_stopWatch.IsRunning)
         {
-            var waypoint = new GeoLocation(pos.TimestampAsUtcDateTime, pos.Coords.Longitude, pos.Coords.Latitude,
+            var waypoint = new GeoLocation(pos.TimestampAsUtcDateTime, pos.Coords.Latitude, pos.Coords.Longitude,
                                 pos.Coords.Accuracy, pos.Coords.Altitude, pos.Coords.AltitudeAccuracy,
                                 pos.Coords.Heading, pos.Coords.Speed);
             _route.AddWaypoint(waypoint);
@@ -119,7 +119,7 @@ public partial class Tracker : IAsyncDisposable
 
     private void NavigateToHome()
     {
-        NavigationManager.NavigateTo(Home.Route);
+        NavigationManager.NavigateTo($".{Home.Route}");
     }
 
     private void Start()

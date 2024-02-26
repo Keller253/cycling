@@ -14,7 +14,7 @@ internal static class ConvertExtensions
     /// <returns>The created model.</returns>
     public static GeoLocation ToModel(this StoreGeoLocationDto dto)
     {
-        return new GeoLocation(dto.Timestamp, dto.Longitude, dto.Latitude, dto.Accuracy, dto.Altitude,
+        return new GeoLocation(dto.Timestamp, dto.Latitude, dto.Longitude, dto.Accuracy, dto.Altitude,
                                 dto.AltitudeAccuracy, dto.Heading, dto.Speed);
     }
 

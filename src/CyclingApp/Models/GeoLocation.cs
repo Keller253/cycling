@@ -6,14 +6,14 @@
 public class GeoLocation
 {
     /// <summary>
-    /// Longitude in decimal degrees.
-    /// </summary>
-    public double Longitude { get; }
-
-    /// <summary>
     /// Latitude in decimal degrees.
     /// </summary>
     public double Latitude { get; }
+
+    /// <summary>
+    /// Longitude in decimal degrees.
+    /// </summary>
+    public double Longitude { get; }
 
     /// <summary>
     /// Accuracy of the <see cref="Latitude"/> and <see cref="Longitude"/> properties, expressed in meters.
@@ -63,7 +63,7 @@ public class GeoLocation
     /// <summary>
     /// Initializes a new instance of <see cref="GeoLocation"/> class.
     /// </summary>
-    public GeoLocation(DateTime timestamp, double longitude, double latitude, double accuracy,
+    public GeoLocation(DateTime timestamp, double latitude, double longitude, double accuracy,
             double? altitude, double? altitudeAccuracy, double? heading, double? speed)
     {
         Timestamp = timestamp;
